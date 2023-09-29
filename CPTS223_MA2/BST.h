@@ -133,8 +133,22 @@ public:
 	 * TODO: Implement Destructor
 	 */
 	~BST() {
-	    cout << "TODO: Implement Destructor" << endl;
+	    bomb (_root);
 	}
+
+	void bomb(Node<T>* pTree)
+	{
+		if(pTree->left != nullptr)
+		{
+			bomb(pTree->left);
+		}
+		if(pTree->right != nullptr)
+		{
+			bomb(pTree->right);
+		}
+		delete pTree;
+	}
+
 
 	/* Public API */
 	void add(T val) {
@@ -155,7 +169,30 @@ public:
 	 * TODO: Implement printLevelOrder
 	 */
 	void printLevelOrder() {
-		cout << "TODO: Implement printLevelOrder" << endl;
+		int h = hieght()
+
+		for(int i = 0; i <= h; i++)
+		{
+			printLevel(this->_root, i);
+			cout << endl;
+		}
+	}
+
+	void printLevel(Node<T>* pTree, int level)
+	{
+		if (pTree = NULL)
+			{
+				return;
+			}
+			if (level == 1)
+			{
+				cout << pTree->value << ' ';
+			}
+			else if (level > 1)
+			{
+				printLevel(pTree->left, level-1);
+				printLevel(pTree->right, level-1);
+			}
 	}
 
 	int nodesCount() {
