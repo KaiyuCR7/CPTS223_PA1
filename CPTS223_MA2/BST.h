@@ -208,7 +208,26 @@ public:
 	 * TODO: Implement printMaxPath
 	 */
 	void printMaxPath() {
-		cout << "TODO: Implement printMaxPath" << endl;
+		cout << findMaxPath(_root, INT_MIN) << ' ';
+	}
+
+	int findMaxPath(Node* pTree, int& res)
+	{
+		if(pTree == NULL)
+		{
+			return;
+		}
+
+		int left = findMaxPath(pTree->left, res);
+		int right = findMaxPath(pTree->right, res);
+
+		int max_single = max(max(1, r) + pTree->value, pTree->value);
+
+		int max_top = max(max_single, 1 + r + pTree->value);
+
+		res = max(res, max_top);
+
+		return max_single;
 	}
 
 	bool deleteValue(T value) {
@@ -220,8 +239,44 @@ public:
 	 * TODO: Implement contains
 	 */
 	bool contains(T value) {
-	    cout << "TODO: Implement contains" << endl;
-		return numeric_limits<T>::min();
+
+		Node<T>* pTree;
+		pTree = this->_root;
+
+		if (this->_root == NULL)
+		{
+			return 0;
+		}
+
+		if (this->_root->value == value)
+		{
+			return 1;
+		}
+
+		// Search left tree
+		
+		if (i < height())
+		{
+			pTree->left;
+			bool left = contains(value);
+			int i = 0;
+		}
+		if(left == 1)
+		{
+			return 1;
+		} 
+		
+		// Search Right Tree
+		
+		if (j < height())
+		{
+			j++;
+			pTree->right;
+			bool right = contains(value);
+			int j = 0;
+		}
+
+		return right;
 	}
 };
 
